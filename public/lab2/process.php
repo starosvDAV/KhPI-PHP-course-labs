@@ -2,7 +2,7 @@
 
 $uploadDir = "uploads/";
 
-// Перевірка чи файл був завантажений
+
 if (!isset($_FILES['file'])) {
     echo "Файл не отримано!";
     exit;
@@ -10,19 +10,17 @@ if (!isset($_FILES['file'])) {
 
 $file = $_FILES['file'];
 
-// Перевірка на помилки
+
 if ($file['error'] !== UPLOAD_ERR_OK) {
     echo "Помилка завантаження файлу!";
     exit;
 }
 
-// Перевірка чи файл справді завантажений
 if (!is_uploaded_file($file['tmp_name'])) {
     echo "Файл не був завантажений коректно!";
     exit;
 }
 
-// Перевірка типу
 $allowed = ['png', 'jpg', 'jpeg'];
 $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 
@@ -31,13 +29,11 @@ if (!in_array($extension, $allowed)) {
     exit;
 }
 
-// Перевірка розміру (2 МБ)
 if ($file['size'] > 2 * 1024 * 1024) {
     echo "Файл завеликий! Максимум 2 МБ.";
     exit;
 }
 
-// Перевірка чи існує файл з таким ім’ям
 $targetPath = $uploadDir . $file['name'];
 
 if (file_exists($targetPath)) {
@@ -46,7 +42,6 @@ if (file_exists($targetPath)) {
     $targetPath = $uploadDir . $base . $suffix . "." . $extension;
 }
 
-// Збереження файлу
 if (move_uploaded_file($file['tmp_name'], $targetPath)) {
     echo "<h3>Файл успішно завантажено!</h3>";
     echo "Ім'я: " . basename($targetPath) . "<br>";

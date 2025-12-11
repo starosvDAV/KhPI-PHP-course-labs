@@ -9,10 +9,10 @@ if (empty(trim($text))) {
     exit;
 }
 
-// Запис у файл
+
 file_put_contents($logFile, $text . "\n", FILE_APPEND);
 
-// Читання
+
 $content = file_get_contents($logFile);
 
 echo "<h2>Дані з log.txt:</h2>";

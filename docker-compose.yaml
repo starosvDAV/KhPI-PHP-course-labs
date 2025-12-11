@@ -70,15 +70,15 @@ services:
         - "3306:3306"
       networks:
         - local
-    adminer:
-      image: adminer:4.8.1
-      restart: always
-      environment:
-          ADMINER_DESIGN: nette
-      ports:
-          - 8084:8080
-      networks:
-          - local
+    #adminer:
+     # image: adminer:4.8.1
+      #restart: always
+      #environment:
+       #   ADMINER_DESIGN: nette
+      #ports:
+       #   - 8084:8080
+      #networks:
+       #   - local
 
 networks:
     local:
